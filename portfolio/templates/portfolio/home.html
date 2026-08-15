@@ -1,0 +1,988 @@
+{% extends 'portfolio/base.html' %}
+
+{% block title %}
+Eng. Tenywa Ibrahim | Mining Engineer
+{% endblock %}
+
+
+{% block content %}
+
+<!-- ================= HERO SECTION ================= -->
+
+<section class="hero">
+
+    <div class="container hero-container">
+
+        <div class="hero-content">
+
+           <span class="hero-label">
+    {{ profile.title }}
+</span>
+           <h1>
+                {{ profile.name }}
+                </h1>
+
+            <h2>
+                 {{ profile.title }}
+            </h2>
+
+            <p>
+                {{ profile.bio|truncatewords:45 }}
+            </p>
+
+            <div class="hero-buttons">
+
+               <a href="#projects" class="btn btn-primary">
+    View My Projects
+</a>
+
+{% if profile and profile.cv %}
+
+    <a href="{{ profile.cv.url }}"
+       class="btn btn-outline"
+       target="_blank">
+        View CV
+    </a>
+
+{% endif %}
+            </div>
+
+        </div>
+
+
+        <!-- PHOTO AREA -->
+
+        <div class="hero-image">
+
+            <div class="image-frame">
+
+                <div class="image-placeholder">
+
+    {% if profile.profile_photo %}
+
+        <img
+            src="{{ profile.profile_photo.url }}"
+            alt="{{ profile.name }}"
+        >
+
+    {% else %}
+
+        <span>IB</span>
+
+    {% endif %}
+
+</div>
+
+            </div>
+
+            <div class="experience-badge">
+
+               <strong>{{ profile.years_of_experience }}+</strong>
+
+                <span>
+                    Years<br>
+                    Experience
+                </span>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- ================= ABOUT SECTION ================= -->
+
+<section id="about" class="about-section">
+
+    <div class="container">
+
+        <div class="section-heading">
+
+            <span>ABOUT ME</span>
+
+            <h2>
+                Engineering Excellence Through
+                <span>Mining</span>
+            </h2>
+
+        </div>
+
+
+        <div class="about-content">
+
+            <div class="about-text">
+
+                <p>
+                    {{ profile.bio }}
+                </p>
+
+                {% if profile.current_position %}
+
+                <p>
+                    He currently serves as
+                    <strong>{{ profile.current_position }}</strong>.
+                </p>
+
+                {% endif %}
+
+                <p>
+                    Eng. Ibrahim is passionate about applying modern
+                    geological mapping technologies and spatial data
+                    analysis to improve mineral exploration, mine
+                    planning, and sustainable resource development.
+                </p>
+
+            </div>
+
+
+            <div class="about-card">
+
+                {% if profile.current_position %}
+
+                <div class="info-item">
+
+                    <strong>Current Position</strong>
+
+                    <span>
+                        {{ profile.current_position }}
+                    </span>
+
+                </div>
+
+                {% endif %}
+
+
+                <div class="info-item">
+
+                    <strong>Specialization</strong>
+
+                    <span>
+                        Mining & Mineral Resources
+                    </span>
+
+                </div>
+
+
+                <div class="info-item">
+
+                    <strong>Experience</strong>
+
+                    <span>
+                        {{ profile.years_of_experience }}+ Years
+                    </span>
+
+                </div>
+
+
+                <div class="info-item">
+
+                    <strong>Current Studies</strong>
+
+                    <span>
+                        MSc Environment & Natural Resources
+                    </span>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ================= EXPERTISE ================= -->
+
+<section id="skills" class="expertise-section">
+
+    <div class="container">
+
+        <div class="section-heading center">
+
+            <span>MY EXPERTISE</span>
+
+            <h2>
+                Professional <span>Capabilities</span>
+            </h2>
+
+        </div>
+
+
+        <div class="skills-grid">
+
+            <div class="skill-card">
+
+                <div class="skill-icon">
+                    ⛏
+                </div>
+
+                <h3>
+                    Mine Planning
+                </h3>
+
+                <p>
+                    Planning and optimizing mining operations
+                    for safe and efficient mineral extraction.
+                </p>
+
+            </div>
+
+
+            <div class="skill-card">
+
+                <div class="skill-icon">
+                    ◈
+                </div>
+
+                <h3>
+                    Geological Mapping
+                </h3>
+
+                <p>
+                    Geological mapping and spatial analysis
+                    for mineral exploration and evaluation.
+                </p>
+
+            </div>
+
+
+            <div class="skill-card">
+
+                <div class="skill-icon">
+                    ◆
+                </div>
+
+                <h3>
+                    Mineral Resources
+                </h3>
+
+                <p>
+                    Ore body evaluation and mineral resource
+                    assessment to support mining decisions.
+                </p>
+
+            </div>
+
+
+            <div class="skill-card">
+
+                <div class="skill-icon">
+                    ⚙
+                </div>
+
+                <h3>
+                    Production Optimization
+                </h3>
+
+                <p>
+                    Improving mining productivity, operational
+                    efficiency and resource utilization.
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ================= EXPERIENCE ================= -->
+
+<section id="experience" class="experience-section">
+
+    <div class="container">
+
+        <div class="section-heading">
+
+            <span>EXPERIENCE</span>
+
+            <h2>
+                Professional <span>Journey</span>
+            </h2>
+
+        </div>
+
+<div class="timeline">
+
+    {% for experience in experiences %}
+
+        <div class="timeline-item">
+
+            <div class="timeline-dot"></div>
+
+            <div class="timeline-content">
+
+                <span class="timeline-date">
+
+                    {% if experience.is_current %}
+
+                        Current Position
+
+                    {% else %}
+
+                        {{ experience.start_date|date:"M Y" }}
+
+                        -
+
+                        {% if experience.end_date %}
+                            {{ experience.end_date|date:"M Y" }}
+                        {% else %}
+                            Present
+                        {% endif %}
+
+                    {% endif %}
+
+                </span>
+
+
+                <h3>
+                    {{ experience.job_title }}
+                </h3>
+
+
+                <h4>
+                    {{ experience.company }}
+                </h4>
+
+
+                {% if experience.location %}
+
+                    <span class="timeline-location">
+                        {{ experience.location }}
+                    </span>
+
+                {% endif %}
+
+
+                <p>
+                    {{ experience.description }}
+                </p>
+
+            </div>
+
+        </div>
+
+    {% empty %}
+
+        <div class="projects-placeholder">
+
+            <h3>
+                Professional Experience Coming Soon
+            </h3>
+
+            <p>
+                Experience details will be added through
+                the Django administration system.
+            </p>
+
+        </div>
+
+    {% endfor %}
+
+</div>
+
+    </div>
+
+</section>
+
+<!-- ================= EDUCATION ================= -->
+
+<section id="education" class="education-section">
+
+    <div class="container">
+
+        <div class="section-heading">
+
+            <span>EDUCATION</span>
+
+            <h2>
+                Academic <span>Background</span>
+            </h2>
+
+            <p>
+                Academic qualifications and educational
+                achievements.
+            </p>
+
+        </div>
+
+
+        <div class="education-grid">
+
+            {% for education in educations %}
+
+                <article class="education-card">
+
+                    <div class="education-icon">
+                        🎓
+                    </div>
+
+                    <div class="education-content">
+
+                        <h3>
+                            {{ education.qualification }}
+                        </h3>
+
+                        <h4>
+                            {{ education.institution }}
+                        </h4>
+
+
+                        {% if education.location %}
+
+                            <span class="education-location">
+                                {{ education.location }}
+                            </span>
+
+                        {% endif %}
+
+
+                        <div class="education-date">
+
+                            {% if education.start_date %}
+                                {{ education.start_date|date:"Y" }}
+                            {% endif %}
+
+                            -
+
+                            {% if education.is_current %}
+                                Present
+                            {% elif education.end_date %}
+                                {{ education.end_date|date:"Y" }}
+                            {% endif %}
+
+                        </div>
+
+
+                        {% if education.description %}
+
+                            <p>
+                                {{ education.description }}
+                            </p>
+
+                        {% endif %}
+
+                    </div>
+
+                </article>
+
+            {% empty %}
+
+                <div class="projects-placeholder">
+
+                    <h3>
+                        Education Coming Soon
+                    </h3>
+
+                    <p>
+                        Academic qualifications will be
+                        added through the Django
+                        administration system.
+                    </p>
+
+                </div>
+
+            {% endfor %}
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ================= SKILLS ================= -->
+
+<section id="skills" class="skills-section">
+
+    <div class="container">
+
+        <div class="section-heading">
+
+            <span>EXPERTISE</span>
+
+            <h2>
+                Professional <span>Skills</span>
+            </h2>
+
+            <p>
+                Technical skills and professional areas
+                of expertise.
+            </p>
+
+        </div>
+
+
+        <div class="skills-grid">
+
+            {% for skill in skills %}
+
+                <article class="skill-card">
+
+                    <div class="skill-header">
+
+                        <h3>
+                            {{ skill.name }}
+                        </h3>
+
+                        <span>
+                            {{ skill.proficiency }}%
+                        </span>
+
+                    </div>
+
+
+                    {% if skill.category %}
+
+                        <span class="skill-category">
+                            {{ skill.category }}
+                        </span>
+
+                    {% endif %}
+
+
+                    <div class="skill-bar">
+
+    <div
+    class="skill-progress"
+    data-proficiency="{{ skill.proficiency }}"
+></div>
+
+
+                    {% if skill.description %}
+
+                        <p>
+                            {{ skill.description }}
+                        </p>
+
+                    {% endif %}
+
+                </article>
+
+            {% empty %}
+
+                <div class="projects-placeholder">
+
+                    <h3>
+                        Skills Coming Soon
+                    </h3>
+
+                    <p>
+                        Professional skills will be added
+                        through the Django administration system.
+                    </p>
+
+                </div>
+
+            {% endfor %}
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ================= PROJECTS ================= -->
+
+<section id="projects" class="projects-section">
+
+    <div class="container">
+
+        <div class="section-heading center">
+
+            <span>PORTFOLIO</span>
+
+            <h2>
+                Featured <span>Projects</span>
+            </h2>
+
+            <p>
+                A selection of mining engineering projects and
+                professional work will be showcased here.
+            </p>
+
+        </div>
+
+<div class="projects-grid">
+
+    {% for project in projects %}
+
+        <article class="project-card">
+
+            {% if project.project_image %}
+
+                <div class="project-image">
+
+                    <img
+                        src="{{ project.project_image.url }}"
+                        alt="{{ project.title }}"
+                    >
+
+                </div>
+
+            {% endif %}
+
+
+            <div class="project-content">
+
+                <h3>
+                    {{ project.title }}
+                </h3>
+
+
+                {% if project.project_date %}
+
+                    <span class="project-date">
+                        {{ project.project_date|date:"F Y" }}
+                    </span>
+
+                {% endif %}
+
+
+                <p>
+                    {{ project.description }}
+                </p>
+
+
+                {% if project.location %}
+
+                    <div class="project-detail">
+
+                        <strong>Location:</strong>
+                        {{ project.location }}
+
+                    </div>
+
+                {% endif %}
+
+
+                {% if project.client %}
+
+                    <div class="project-detail">
+
+                        <strong>Client:</strong>
+                        {{ project.client }}
+
+                    </div>
+
+                {% endif %}
+
+
+                {% if project.role %}
+
+                    <div class="project-detail">
+
+                        <strong>Role:</strong>
+                        {{ project.role }}
+
+                    </div>
+
+                {% endif %}
+
+
+                {% if project.project_document %}
+
+                    <a
+                        href="{{ project.project_document.url }}"
+                        target="_blank"
+                        class="project-link"
+                    >
+                        View Project Document →
+                    </a>
+
+                {% endif %}
+
+            </div>
+
+        </article>
+
+
+    {% empty %}
+
+        <div class="projects-placeholder">
+
+            <h3>
+                Projects Coming Soon
+            </h3>
+
+            <p>
+                Project details will be added through the
+                Django administration system.
+            </p>
+
+        </div>
+
+    {% endfor %}
+
+</div>
+
+    </div>
+
+</section>
+
+
+<!-- ================= CERTIFICATES ================= -->
+
+<section id="certificates" class="certificates-section">
+
+    <div class="container">
+
+        <div class="section-heading center">
+
+            <span>CERTIFICATIONS</span>
+
+            <h2>
+                Professional <span>Certifications</span>
+            </h2>
+
+            <p>
+                Professional certifications and training
+                completed by Eng. Ibrahim.
+            </p>
+
+        </div>
+
+
+        <div class="certificates-grid">
+
+            {% for certificate in certificates %}
+
+                <div class="certificate-card">
+
+                    <div class="certificate-icon">
+                        ✓
+                    </div>
+
+                    <h3>
+                        {{ certificate.name }}
+                    </h3>
+
+                    <p>
+                        {{ certificate.issuing_organization }}
+                    </p>
+
+                    {% if certificate.issue_date %}
+
+                        <small>
+                            {{ certificate.issue_date|date:"F Y" }}
+                        </small>
+
+                    {% endif %}
+
+                    <a
+                        href="{{ certificate.certificate_file.url }}"
+                        target="_blank"
+                        class="certificate-link"
+                    >
+                        View Certificate →
+                    </a>
+
+                </div>
+
+            {% empty %}
+
+                <div class="projects-placeholder">
+
+                    <h3>
+                        Certifications Coming Soon
+                    </h3>
+
+                    <p>
+                        Professional certificates will be
+                        added through the Django admin panel.
+                    </p>
+
+                </div>
+
+            {% endfor %}
+
+        </div>
+
+    </div>
+
+</section>
+<!-- ================= CONTACT ================= -->
+
+<section id="contact" class="contact-section">
+
+    <div class="container">
+
+        <div class="section-heading center">
+
+            <span>CONTACT</span>
+
+            <h2>
+                Let's Discuss
+                <span>Opportunities</span>
+            </h2>
+
+            <p>
+                Interested in mining engineering, mineral exploration,
+                mine planning or sustainable resource development?
+                Get in touch to discuss professional opportunities
+                and potential collaboration.
+            </p>
+
+        </div>
+
+
+        <div class="contact-grid">
+
+            <!-- Contact Information -->
+
+            <div class="contact-info">
+
+                <h3>
+                    Get In Touch
+                </h3>
+
+                <p>
+                    For professional inquiries, collaborations,
+                    consultancy opportunities and engineering
+                    discussions, you can reach Eng. Ibrahim through
+                    the details below.
+                </p>
+
+
+                {% if profile.email %}
+
+                <div class="contact-item">
+
+                    <div class="contact-icon">
+                        ✉
+                    </div>
+
+                    <div>
+                        <span>Email</span>
+
+                        <a href="mailto:{{ profile.email }}">
+                            {{ profile.email }}
+                        </a>
+                    </div>
+
+                </div>
+
+                {% endif %}
+
+
+                {% if profile.phone %}
+
+                <div class="contact-item">
+
+                    <div class="contact-icon">
+                        ☎
+                    </div>
+
+                    <div>
+                        <span>Phone</span>
+
+                        <a href="tel:{{ profile.phone }}">
+                            {{ profile.phone }}
+                        </a>
+                    </div>
+
+                </div>
+
+                {% endif %}
+
+
+                {% if profile.location %}
+
+                <div class="contact-item">
+
+                    <div class="contact-icon">
+                        📍
+                    </div>
+
+                    <div>
+                        <span>Location</span>
+
+                        <p>
+                            {{ profile.location }}
+                        </p>
+                    </div>
+
+                </div>
+
+                {% endif %}
+
+
+                {% if profile.linkedin %}
+
+                <div class="contact-item">
+
+                    <div class="contact-icon">
+                        in
+                    </div>
+
+                    <div>
+                        <span>LinkedIn</span>
+
+                        <a
+                            href="{{ profile.linkedin }}"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                        >
+                            Professional Profile
+                        </a>
+                    </div>
+
+                </div>
+
+                {% endif %}
+
+            </div>
+
+
+            <!-- Contact Call To Action -->
+
+            <div class="contact-card">
+
+                <div class="contact-card-content">
+
+                    <span>
+                        PROFESSIONAL INQUIRIES
+                    </span>
+
+                    <h3>
+                        Let's Work Together
+                    </h3>
+
+                    <p>
+                        Whether you are looking for mining engineering
+                        expertise, project planning support, mineral
+                        resource assessment or professional collaboration,
+                        feel free to get in touch.
+                    </p>
+
+
+                    {% if profile.email %}
+
+                    <a
+                        href="mailto:{{ profile.email }}"
+                        class="btn btn-primary"
+                    >
+                        Send an Email
+                    </a>
+
+                    {% endif %}
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+{% endblock %}
