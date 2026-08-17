@@ -15,3 +15,5 @@ staticfiles/
 .env
 
 *.log
+
+backup.json
