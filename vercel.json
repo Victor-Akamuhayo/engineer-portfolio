@@ -1,4 +1,5 @@
-﻿{
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
   "buildCommand": "python manage.py migrate --noinput && python manage.py collectstatic --noinput",
   "outputDirectory": ".",
   "installCommand": "pip install -r requirements.txt"
