@@ -1,4 +1,4 @@
-﻿from types import SimpleNamespace
+from types import SimpleNamespace
 
 from django.db.utils import OperationalError
 from django.shortcuts import render
